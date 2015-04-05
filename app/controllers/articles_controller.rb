@@ -12,6 +12,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
     #@comment = Comment.new
+    @comment = @article.user.comments.build
 
   end
 

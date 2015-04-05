@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @article.name %>
+  <strong>Name: <%= @article.name %></strong> &nbsp by <%= @article.user.email %>
 </p>
 
 <p>
@@ -12,7 +11,7 @@
 <% if @article.comments.any? %>
 <p>I have <%= @article.comments.count %>comments.</p>
           <ul><% @article.comments.each do |comment| %>
-             <li><%= comment.name %> </li>
+             <li><%= comment.name %> &nbsp by <%= comment.user.email %></li>
              <% end  %></ul><br />
 
           <%= render 'comments/form' %>

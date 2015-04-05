@@ -4,16 +4,11 @@
 
     <ol type="1">
     <% @articles.each do |article| %>
-      
-      
-      <li><strong><%= article.name %></strong>
-      <%= link_to 'Show', article %>
-      <%= link_to 'Edit', edit_article_path(article) %>
-      <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %><br /><br/><br />
-      <%= article.content %><br />
-      
-
-      </li>
+	      <li><strong><%= link_to article.name, article %></strong> &nbsp &nbsp by <%= article.user.email %>&nbsp &nbsp 
+	      <%= link_to 'Edit', edit_article_path(article) %>
+	      <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %><br />
+	      <%= article.content %><br /><br /><br />
+	      </li>
     <% end %>
      
 

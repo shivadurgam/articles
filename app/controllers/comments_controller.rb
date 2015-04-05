@@ -3,14 +3,15 @@ class CommentsController < ApplicationController
  
   def create
     @article = Article.find(params[:article_id])
-    @comment = @article.comments.create(comment_params)
+    @comment = @article.comments.build(comment_params)
+    @comment.user_id = current_user.id
     
     if @comment.save
       flash[:success] = "Comment created!"
       redirect_to @article
     else 
-      flash[:error] = "error"
-      redirect_to articles_path
+      flash[:error] = @comment.errors.full_messages
+      redirect_to @article
     end
   end
 
