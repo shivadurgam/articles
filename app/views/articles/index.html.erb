@@ -1,17 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Articles</h1>
+<h1>Articles</h1>
 
     <ol type="1">
     <% @articles.each do |article| %>
-	      <li><strong><%= link_to article.name, article %></strong> &nbsp &nbsp by <%= article.user.email %>&nbsp &nbsp 
+	      <h3><li><strong><%= link_to article.name, article %></strong></h3> &nbsp &nbsp by <%= article.user.email %>&nbsp &nbsp 
 	      <% if article.user.email == current_user.email %>
 	      <%= link_to 'Edit', edit_article_path(article) %>
 	      <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %>
 	      <% end %>
 	      <br />
 
-	      <%= article.content %><br /><br /><br />
+	      <%= truncate article.content, :length => 40, :separator => ' ' %>
+
+	      <br /><br /><br />
 	      </li>
     <% end %>
      

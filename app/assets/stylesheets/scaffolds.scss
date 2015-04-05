@@ -39,6 +39,23 @@ div {
   color: green;
 }
 
+.flash_success {
+      margin-left: 150px;
+      background-color: white;
+      border: 1px solid green;
+      color: green;
+      width: 30%;
+      padding: 10px;
+}
+.flash_error {
+      margin-left: 150px;
+      background-color: white;
+      border: 1px solid red;
+      color: red;
+      width: 30%;
+      padding: 10px;
+}
+
 .field_with_errors {
   padding: 2px;
   background-color: red;
@@ -68,21 +85,4 @@ div {
   }
 } 
 
-    .flash_success {
-      margin-left: 80px;
-      margin-top: 100px;
-      background-color: white;
-      border: 1px solid green;
-      color: green;
-      width: 30%;
-      padding: 10px;
-}
-    .flash_error {
-      margin-left: 80px;
-      margin-top: 100px;
-      background-color: white;
-      border: 1px solid red;
-      color: red;
-      width: 30%;
-      padding: 10px;
-}
+

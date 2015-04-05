@@ -1,4 +1,4 @@
-<%= form_for([@article, @comment]) do |f| %>
+<%= bootstrap_form_for([@article, @comment]) do |f| %>
   <% if @comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -12,13 +12,13 @@
   <% end %><br />
 
   <div class="field">
-    <%= f.text_area :name, :placeholder => 'your comment here..' %>
+    <%= f.text_area :name, :placeholder => 'your comment here..', :size => '60x6' %>
   </div>
     <%= f.hidden_field :article_id, value: @article.id %>
 
   
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => 'btn btn-primary' %>
   </div>
   
 <% end %>
