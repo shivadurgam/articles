@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @article.name %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @article.content %>
+</p>
+<% if @article.comments.any? %>
+<p>I have <%= @article.comments.count %>comments.</p>
+          <ul><% @article.comments.each do |comment| %>
+             <li><%= comment.name %> </li>
+             <% end  %></ul><br />
+
+          <%= render 'comments/form' %>
+<% else %>
+<p>I dont have comments. please add one..</p>
+          <%= render 'comments/form' %>
+<% end %>
+
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>
