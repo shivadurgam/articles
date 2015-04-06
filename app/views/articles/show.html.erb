@@ -15,10 +15,12 @@
           
   <ul><% @article.comments.each do |comment| %>
            <li><%= comment.name %> &nbsp &nbsp<br /> <i class="com-post">posted <%= time_ago_in_words(comment.created_at) %> ago &nbsp by <%= comment.user.email %> &nbsp &nbsp &nbsp 
+                  <% if user_signed_in? %>
                   <% if comment.user.email == current_user.email %> 
                     <p class="com-del"><%= link_to 'Delete', [comment.article, comment], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-warning' %></p>
                   <% elsif @article.user.email == current_user.email %>
                     <p class="com-del"><%= link_to 'Delete', [comment.article, comment], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-warning' %></p>
+                  <% end %>
                   <% end %></i></li>
                <% end  %></ul><br />
                </div>

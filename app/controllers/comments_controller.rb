@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
  
 
@@ -15,8 +16,8 @@ class CommentsController < ApplicationController
       flash[:success] = "Comment created!"
       redirect_to @article
     else 
-      flash[:error] = "Comment cant be empty!!"
-      render 'new'
+      flash[:error] = "Comment can't be blank!"
+      redirect_to @article
      end
   end
 
