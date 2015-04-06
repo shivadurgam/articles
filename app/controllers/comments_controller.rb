@@ -1,6 +1,11 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
  
+
+  def new
+    @artile = Article.find(params[:id])
+    @comment = @article.user.comments.build
+  end
   def create
     @article = Article.find(params[:article_id])
     @comment = @article.comments.build(comment_params)
@@ -10,9 +15,9 @@ class CommentsController < ApplicationController
       flash[:success] = "Comment created!"
       redirect_to @article
     else 
-      flash[:error] = @comment.errors.full_messages
-      redirect_to @article
-    end
+      flash[:error] = "Comment cant be empty!!"
+      render 'new'
+     end
   end
 
   # PATCH/PUT /comments/1
