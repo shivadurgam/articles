@@ -3,11 +3,16 @@
 <p>
   <strong><h3> <%= @article.name.titleize %></h3></strong> &nbsp
   <i class="art-post"> by <%= @article.user.email %> </i>
+  <% if user_signed_in? %>
+  <% if @article.user.email == current_user.email %>
+  <i style="float:right"><%= link_to 'Edit Article', edit_article_path(@article) %></i>
+  <% end %>
+  <% end %>
 </p>
 
-<p>
+<p style="color:green">
   <strong>Description:</strong>
-  <%= @article.content %>
+  <%= simple_format(@article.content) %>
 </p>
 <% if @article.comments.any? %><br /><hr> 
 <h4>Comments: </h4>

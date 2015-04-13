@@ -13,7 +13,7 @@
 	      <% end %>
 	      <br /><br />
 
-	      <%= truncate article.content, :length => 420, :separator => ' ' %> &nbsp
+	      <%= truncate strip_tags(simple_format(article.content)), :length => 420, :separator => ' ' %> &nbsp
 	      <%= link_to 'Click here for Full article', article %>
 
 	      <br /><hr>

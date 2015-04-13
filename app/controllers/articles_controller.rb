@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :set_comment
+  respond_to :html
   # GET /articles
   # GET /articles.json
   def index
@@ -14,6 +15,9 @@ class ArticlesController < ApplicationController
   def show
     #@comment = Comment.new
     @comment = @article.user.comments.build
+    if !user_signed_in?
+    flash[:success] = "Please sign in to post a comment"
+    end 
 
   end
 
