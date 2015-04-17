@@ -6,8 +6,14 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
-
+    @articles = Article.search(params[:search])
+    if params[:search].present?
+      if @articles.empty?
+        @search = "No records found for  '#{params[:search]}'"
+      else 
+        @search = "Your query- '#{params[:search]}' yielded #{@articles.count} results."
+      end 
+    end 
   end
 
   # GET /articles/1
@@ -64,10 +70,13 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1.json
   def destroy
     @article.destroy
-    respond_to do |format|
-      format.html { redirect_to articles_url, :flash => {:success =>'Article was successfully destroyed.'} }
-      format.json { head :no_content }
-    end
+    redirect_to article_calendar_url, :flash => {:success =>'Article was successfully destroyed.'} 
+    
+  end
+
+  def article_calendar
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    @articles = Article.all
   end
 
   private

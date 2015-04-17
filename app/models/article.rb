@@ -6,6 +6,19 @@ class Article < ActiveRecord::Base
 
 	validates :name, :content, presence: true
 	validates :user_id, presence: true
+
+	def useremail
+		article.user.email
+	end
+
+
+	def self.search(query)  
+	    if query  
+	      where('name LIKE ? OR content LIKE ?', "%#{query}%", "%#{query}%")  
+	    else  
+	      where(nil) 
+	    end  
+  	end
 	
 
 end

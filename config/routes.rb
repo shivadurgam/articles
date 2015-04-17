@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
+  resource :calendar, only: [:show], controller: :calendar
+
   get 'static_pages/home' 
+  get 'static_pages/account' => 'static_pages#account', as: :account
+  get 'articles#article_calendar' => 'articles#article_calendar', as: :article_calendar
   
   devise_for :users
   resources :articles do 
