@@ -4,9 +4,9 @@
   <strong><h3> <%= @article.name.titleize %></h3></strong> &nbsp
   <i class="art-post"> by <%= @article.user.email %> </i>
   <% if user_signed_in? %>
-  <% if @article.user.email == current_user.email %>
-  <i style="float:right"><%= link_to 'Edit Article', edit_article_path(@article) %></i>
-  <% end %>
+    <% if @article.user.email == current_user.email %>
+      <i style="float:right"><%= link_to 'Edit Article', edit_article_path(@article) %></i>
+    <% end %>
   <% end %>
 </p>
 
@@ -14,25 +14,33 @@
   <strong>Description:</strong>
   <%= simple_format(@article.content) %>
 </p>
+
 <% if @article.comments.any? %><br /><hr> 
-<h4>Comments: </h4>
-<div class="comment-box"> <h5><%= @article.comments.count %>&nbsp comments:</h5>
-          
-  <ul><% @article.comments.each do |comment| %>
-           <li><%= comment.name %> &nbsp &nbsp<br /> <i class="com-post">posted <%= time_ago_in_words(comment.created_at) %> ago &nbsp by <%= comment.user.email %> &nbsp &nbsp &nbsp 
-                  <% if user_signed_in? %>
+  <h4>Comments: </h4>
+  <div class="comment-box"> 
+    <h5><%= @article.comments.count %>&nbsp comments:</h5>
+    <ul>
+      <% @article.comments.each do |comment| %>
+            <li>
+              <%= comment.name %> &nbsp &nbsp<br /> 
+              <i class="com-post">posted <%= time_ago_in_words(comment.created_at) %> ago
+                 &nbsp by <%= comment.user.email %> &nbsp &nbsp &nbsp 
+                <% if user_signed_in? %>
                   <% if comment.user.email == current_user.email %> 
-                    <p class="com-del"><%= link_to 'Delete', [comment.article, comment], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-warning' %></p>
+                        <p class="com-del"><%= link_to 'Delete', [comment.article, comment], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-warning' %></p>
                   <% elsif @article.user.email == current_user.email %>
-                    <p class="com-del"><%= link_to 'Delete', [comment.article, comment], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-warning' %></p>
+                        <p class="com-del"><%= link_to 'Delete', [comment.article, comment], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-warning' %></p>
                   <% end %>
-                  <% end %></i></li>
-               <% end  %></ul><br />
-               </div>
-          <%= render 'comments/form' %>
+                <% end %>
+              </i>
+            </li>
+      <% end  %>
+    </ul><br />
+  </div>
+  <%= render 'comments/form' %><br/>
 <% else %>
-<br/><p>0 comments.</p>
-          <%= render 'comments/form' %>
+  <p>0 comments.</p>
+  <%= render 'comments/form' %>
 <% end %>
 
 

@@ -22,7 +22,7 @@ class ArticlesController < ApplicationController
     #@comment = Comment.new
     @comment = @article.user.comments.build
     if !user_signed_in?
-    flash[:success] = "Please sign in to post a comment"
+    flash[:alert] = "Please sign in to post a comment"
     end 
 
   end
@@ -43,7 +43,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to @article, :flash => {:success => 'Article was successfully created.' }}
+        format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new }
@@ -57,7 +57,7 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
-        format.html { redirect_to @article, :flash => {:success => 'Article was successfully updated.'} }
+        format.html { redirect_to @article, notice: 'Article was successfully updated.'} 
         format.json { render :show, status: :ok, location: @article }
       else
         format.html { render :edit }
@@ -70,7 +70,7 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1.json
   def destroy
     @article.destroy
-    redirect_to article_calendar_url, :flash => {:success =>'Article was successfully destroyed.'} 
+    redirect_to article_calendar_url, notice: 'Article was successfully destroyed.'
     
   end
 

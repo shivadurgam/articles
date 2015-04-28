@@ -3,11 +3,9 @@
     <div class="navbar-header">
     
       <% if user_signed_in? %>
-        <li><%= link_to 'My Blog', articles_path, :class => 'navbar-brand' %>
-            <%= link_to 'Calendar', calendar_path, :class => 'navbar-brand' %></li> 
+        <li><%= link_to 'My Blog', articles_path, :class => 'navbar-brand' %></li> 
       <% else %>
-        <li><%= link_to 'My Blog', root_path, :class => 'navbar-brand' %>
-            <%= link_to 'Calendar', calendar_path, :class => 'navbar-brand' %></li>
+        <li><%= link_to 'My Blog', root_path, :class => 'navbar-brand' %></li>
       <% end %>
     </div>
     <div>
@@ -18,30 +16,30 @@
               <li><%= link_to 'My Account',  account_path %> </li>
               <% end %>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        
- 
-    <% if user_signed_in? %>
-      <li> <%= form_tag articles_path, :method => 'get' do %>  
-              <p style="margin-right:20px; margin-top:15px"> 
-                <%= text_field_tag :search, params[:search], :placeholder => "search" %>  
-                <%= submit_tag "Search", :name => nil %>  
-              </p>  
-             <% end %>
-        </li> 
-      <li style="color:white"> Logged in as: <strong><%= current_user.email %></strong> </li>
-      <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
-    <% else %>
-        <li> <%= form_tag root_path, :method => 'get' do %>  
-              <p style="margin-right:20px; margin-top:15px"> 
-                <%= text_field_tag :search, params[:search], :placeholder => "search articles" %>  
-                <%= submit_tag "Search", :name => nil %>  
-              </p>  
-             <% end %>
-        </li> 
-      <li><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></li> 
-      <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
-    <% end %>
+      <ul class="nav navbar-nav pull-right">  
+      <% if user_signed_in? %>
+        <li style="margin-top:8px"> 
+            <%= form_tag articles_path, class: "form-inline", role: "form", :method => 'get' do %> 
+              <div class="form-group has-success has-feedback"> 
+                <%= text_field_tag :search, params[:search], :placeholder => "search articles", class: " search-query form-control" %>  
+                <%= submit_tag "Search", :name => nil, class: "btn btn-default"%>
+              </div>  
+            <% end %>
+        </li>     
+      
+        <li style="color:white"> Logged in as: <strong><%= current_user.email %></strong> </li>
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+      <% else %>
+          <li style="margin-top:8px"> <%= form_tag articles_path, class: "form-inline", role: "form", :method => 'get' do %> 
+              <div class="form-group has-success has-feedback"> 
+                <%= text_field_tag :search, params[:search], :placeholder => "search articles", class: " search-query form-control" %>  
+                <%= submit_tag "Search", :name => nil, class: "btn btn-default"%>
+              </div>  
+            <% end %>
+          </li> 
+        <li><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></li> 
+        <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
+      <% end %>
       </ul>
     </div>
   </div>

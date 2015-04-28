@@ -5,7 +5,7 @@
 	<div class="article-index">
     <ol type="1">
     <% @articles.each do |article| %>
-	      <h3><strong><li><%= link_to article.name.titleize, article %></li></strong></h3>  &nbsp &nbsp 
+	      <h3><strong><li><%= link_to article.name.titleize, article %></li></strong></h3> &nbsp &nbsp 
 	       <i class="art-post"> posted on <%= article.created_at.strftime("%A, %d %b %Y") %>&nbsp  by <%= article.user.email %></i>&nbsp &nbsp 
 	      <br /><br />
 

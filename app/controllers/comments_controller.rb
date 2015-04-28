@@ -13,11 +13,9 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     
     if @comment.save
-      flash[:success] = "Comment created!"
-      redirect_to @article
+      redirect_to @article, notice: "Comment created!"
     else 
-      flash[:error] = "Comment can't be blank!"
-      redirect_to @article
+      redirect_to @article, alert: "Comment can't be blank!"
      end
   end
 
@@ -30,7 +28,7 @@ class CommentsController < ApplicationController
   def destroy
     @article = Article.find(params[:article_id])
     @comment.destroy
-    redirect_to article_path(@article), :flash => {:success => "Comment was successfully destroyed."}
+    redirect_to article_path(@article), notice: "Comment was successfully destroyed."
       
   end
 
