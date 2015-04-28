@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="col-md-3">
 		<h3><strong>Articles by Date:</strong></h3><hr>
-		<% @articles.each do |article| %>
+		<% @user.articles.each do |article| %>
 		         <ul>
 		            <li>
 		            	<%= link_to (truncate strip_tags(simple_format(article.name)), :length => 30, :separator => ' '), article %>
@@ -27,7 +27,7 @@
 
 				    <%= calendar @date do |date| %>
 				      <%= date.day %>
-				      <% @articles.each do |article| %>
+				      <% @user.articles.each do |article| %>
 				         <ul>
 				           <% if article.created_at.strftime("%D") == date.strftime("%D") %>
 				            <li>

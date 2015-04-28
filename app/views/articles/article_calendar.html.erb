@@ -4,7 +4,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<ol type="1">
-		<% @articles.each do |article| %>
+		<% @user.articles.each do |article| %>
 		            <li>
 		            	<%= link_to (truncate strip_tags(simple_format(article.name)), :length => 30, :separator => ' '), article %>
 		            </li><br />

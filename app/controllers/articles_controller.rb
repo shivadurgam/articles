@@ -77,6 +77,7 @@ class ArticlesController < ApplicationController
   def article_calendar
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
     @articles = Article.all
+    @user = current_user
   end
 
   private

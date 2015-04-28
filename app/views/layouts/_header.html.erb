@@ -3,9 +3,9 @@
     <div class="navbar-header">
     
       <% if user_signed_in? %>
-        <li><%= link_to 'My Blog', articles_path, :class => 'navbar-brand' %></li> 
+        <li><%= link_to 'Blog', articles_path, :class => 'navbar-brand' %></li> 
       <% else %>
-        <li><%= link_to 'My Blog', root_path, :class => 'navbar-brand' %></li>
+        <li><%= link_to 'Blog', root_path, :class => 'navbar-brand' %></li>
       <% end %>
     </div>
     <div>
