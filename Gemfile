@@ -51,3 +51,18 @@ group :development, :test do
   gem 'spring'
 end
 
+gem 'omniauth-twitter'
+gem 'paperclip'
+
+group :test do
+	gem 'rspec', '~> 3.2.0'
+end
+
+group :development, :test do
+	gem 'spring-commands-rspec'
+	gem 'rspec-rails'
+	gem 'capybara'
+	gem 'guard-rspec'
+	gem 'guard-bundler'
+end
+

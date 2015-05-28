@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Articles - <%= yield(:title) %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -10,18 +11,29 @@
 
 <%= render 'layouts/header' %>
 
+<div class="row">
 
+	<% if notice %>
+	  <p class="alert alert-success"><%= notice %></p>
+	<% end %>
+	<% if alert %>
+	  <p class="alert alert-danger"><%= alert %></p>
+	<% end %>
 
+	<div class="col-md-2">
+		<% if user_signed_in? %>
+			<%= image_tag current_user.avatar.url(:thumb), class: "img-square", style: "padding:20px" %>
+			<%= current_user.email%>
+		<% end %>
+	</div>
 
+	<div class="col-md-8">
+		<%= yield %>
+	</div>
 
-<div class="container">
-<% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
-<% end %>
-<% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
-<% end %>
-<%= yield %>
+	<div class="col-md-2">
+	</div>
+	
 </div>
 
     

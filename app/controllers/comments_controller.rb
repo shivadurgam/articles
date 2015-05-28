@@ -12,11 +12,9 @@ class CommentsController < ApplicationController
     @comment = @article.comments.build(comment_params)
     @comment.user_id = current_user.id
     
-    if @comment.save
-      redirect_to @article, notice: "Comment created!"
-    else 
-      redirect_to @article, alert: "Comment can't be blank!"
-     end
+    respond_to do |format|
+      format.js {}
+    end
   end
 
   # PATCH/PUT /comments/1
@@ -28,7 +26,7 @@ class CommentsController < ApplicationController
   def destroy
     @article = Article.find(params[:article_id])
     @comment.destroy
-    redirect_to article_path(@article), notice: "Comment was successfully destroyed."
+    redirect_to article_path(@article), notice: "Comment was successfully destroyed." 
       
   end
 

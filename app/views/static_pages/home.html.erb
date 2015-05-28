@@ -1,11 +1,11 @@
 <% provide(:title, 'Index') %>
 
-<h1>Articles</h1><hr>
+<h3>Articles</h3><hr>
 <p style="color:red"> <strong><%= @search %> </strong></p>	
 	<div class="article-index">
     <ol type="1">
     <% @articles.each do |article| %>
-	      <h3><strong><li><%= link_to article.name.titleize, article %></li></strong></h3> &nbsp &nbsp 
+	      <h4><li><%= link_to article.name.titleize, article %></li></h4> &nbsp &nbsp 
 	       <i class="art-post"> posted on <%= article.created_at.strftime("%A, %d %b %Y") %>&nbsp  by <%= article.user.email %></i>&nbsp &nbsp 
 	      <br /><br />
 

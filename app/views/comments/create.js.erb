@@ -1,0 +1,13 @@
+<% if @comment.save %>
+	$("#nalla").html("<%= j render(@article.comments) %> ");
+	$("#comment_name").val("");
+	$("#shiva").html("");
+	$("#shiva").css("background-color", "#fff");
+	
+
+<% else %>
+	$("#shiva").html("Comment can't be blank!");
+	$("#shiva").css("background-color", "#f2dede");
+	$("#shiva").css("color", "#a94442")
+	$("#shiva").css("padding", "15px")
+<% end %>
